@@ -9,8 +9,8 @@ this repo instead of clicking through the Squarespace console.
 
 ## Why this stack
 
-- **Static output** — no server to run or patch. Deploys to Cloudflare Pages
-  (recommended, unmetered bandwidth) or GitHub Pages. Free either way.
+- **Static output** — no server to run or patch. Deploys to **GitHub Pages**
+  (same host as `cyberforks-blog`), built by GitHub Actions on every push. Free.
 - **Astro** — nav and footer live in one shared layout, so a page edit can't
   drift one page out of sync with the rest. Content is plain data at the top of
   each `.astro` page; no framework knowledge needed to change copy.
@@ -45,16 +45,23 @@ npm run preview  # serve the built dist/ locally
 | `/rowdy-roddy-red-team-infrastructure` | `src/pages/rowdy-roddy-red-team-infrastructure.astro` |
 | `/contact-me` | `src/pages/contact-me.astro` |
 
-## Deploy (later — not wired yet)
+## Deploy
 
-Recommended: **Cloudflare Pages** → connect the GitHub repo, build command
-`npm run build`, output dir `dist/`. Point `cyberforks.com` DNS at Pages, verify,
-then cancel Squarespace.
+GitHub Actions builds and deploys on every push to `main` (see
+`.github/workflows/deploy.yml`). Pages source = **GitHub Actions**. The custom
+domain `cyberforks.com` is set via `public/CNAME`.
+
+**DNS (at the Squarespace domain panel):**
+- `A @` → GitHub Pages IPs: `185.199.108.153`, `185.199.109.153`,
+  `185.199.110.153`, `185.199.111.153`
+- `CNAME www` → `rbfp.github.io`
+
+Everything else (Google Workspace MX/SPF, `blog` CNAME) stays untouched.
 
 ## Notes / TODO
 
 - Hero images are CSS gradients (no binary assets committed). Drop real images in
   `public/images/` and reference them if desired.
 - Contact page is mailto-only — static sites can't receive form POSTs. Wire a
-  serverless handler (Pages Functions / Formspree) if a form is wanted.
+  serverless handler if a form is wanted.
 - Content is a faithful rebuild of the current Squarespace site as of 2026-07-03.
