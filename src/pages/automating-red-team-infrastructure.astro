@@ -1,0 +1,77 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Automating Red Team Infrastructure" description="Terraforming the cloud — automating red team infrastructure with Terraform.">
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Playbook · Infrastructure</p>
+      <h1>Terraforming The Cloud</h1>
+      <p class="lede">Automating red team infrastructure with Terraform.</p>
+    </div>
+  </section>
+
+  <article class="section wrap prose">
+    <p>This guide documents using Terraform to build red team infrastructure, following the companion blog post on manual red team infrastructure setup. The repository lives at <a href="https://github.com/rbfp/redteam-infra" target="_blank" rel="noopener">github.com/rbfp/redteam-infra</a>.</p>
+
+    <h2>Pre-Requisites</h2>
+    <ul>
+      <li>An AWS account with access keys</li>
+      <li>Terraform installed</li>
+      <li>AWS CLI installed</li>
+    </ul>
+    <p>Create an additional IAM user (<code>terraform-redteam</code>) with Power User permissions, disable its console login, and create access keys. Install Terraform and the AWS CLI on a Kali/Linux box:</p>
+    <pre><code>$ sudo apt update
+$ sudo apt install terraform
+$ sudo apt install awscli</code></pre>
+
+    <h2>Step 0 — Download the GitHub Repo</h2>
+    <p>Set up an SSH key with GitHub (<a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account" target="_blank" rel="noopener">docs</a>), then clone:</p>
+    <pre><code>$ git clone git@github.com:rbfp/redteam-infra.git
+$ cd redteam-infra</code></pre>
+
+    <h2>Step 1 — Configure AWS CLI</h2>
+    <p>Use a dedicated profile to keep credentials separate. Default region: <code>us-west-2</code>.</p>
+    <pre><code>$ aws configure --profile redteam</code></pre>
+
+    <h2>Step 2 — Configure Region to Deploy</h2>
+    <p>Run <code>./infra_setup.sh</code>. It prompts for AWS profile, project name (e.g. <code>redwest20</code>), region, OS choice (Ubuntu recommended), and availability zones.</p>
+
+    <h2>Step 3 — Terraform the Cloud</h2>
+    <p>The automated Terraform commands execute, creating ~30 resources with auto-generated credentials:</p>
+    <ul>
+      <li><strong>Bastion Host</strong> — user <code>bastion</code>, key <code>&#123;&#123; project_name &#125;&#125;-bastion.pem</code></li>
+      <li><strong>Redirector</strong> — user <code>redirector</code>, key <code>&#123;&#123; project_name &#125;&#125;-internal.pem</code></li>
+      <li><strong>C2 Server</strong> — user <code>c2server</code>, key <code>&#123;&#123; project_name &#125;&#125;-internal.pem</code></li>
+    </ul>
+    <div class="callout">The redirector and C2 server can only SSH into their respective EC2 instances from within the bastion host.</div>
+
+    <h2>Step 4 — Verify Deployment</h2>
+    <p>Use <code>./manage_aws.sh</code> to start, stop, list instances, and check billing. Verify in the AWS Console that instances have no public IPv4 addresses, then test SSH through the bastion:</p>
+    <pre><code>$ ssh -i ~/redteam_infra/build/&#123;&#123; project_name &#125;&#125;-bastion.pem bastion@&#123;&#123; bastion_ipv6 &#125;&#125;
+$ ssh -i .ssh/internal.pem c2server@&#123;&#123; c2_ipv4 &#125;&#125;</code></pre>
+
+    <h2>Step 5 — Cobalt Strike Install</h2>
+    <p>Run <code>./cobalt_setup.sh</code> to automate dependency install and file deployment. It prompts for the redirector IPv6, C2 server IPv4, redirector IPv4, project name, and the Cobalt Strike 7z password.</p>
+
+    <h2>Step 7 — Cobalt Server Setup</h2>
+    <p>Multiple concurrent terminal sessions are required.</p>
+    <p><strong>On the C2 server:</strong></p>
+    <pre><code>$ chmod +x ./CS491/Server/teamserver ./CS491/Server/TeamServerImage
+$ ./teamserver &#123;&#123; c2_ipv4 &#125;&#125; &#123;&#123; cobalt_server_pass &#125;&#125;</code></pre>
+    <p><strong>Attack box SSH tunnel:</strong></p>
+    <pre><code>$ ssh -i &#123;&#123; project_name &#125;&#125;-bastion.pem -L 50050:&#123;&#123; c2_ipv4 &#125;&#125;:50050 bastion@&#123;&#123; bastion-ipv6 &#125;&#125;</code></pre>
+    <p><strong>Redirector traffic redirection:</strong></p>
+    <pre><code>$ sudo socat TCP6-LISTEN:443,reuseaddr,fork TCP4:&#123;&#123; c2_ipv4 &#125;&#125;:443</code></pre>
+    <p><strong>Cobalt Strike client:</strong></p>
+    <pre><code>$ chmod +x ./cobaltstrike-client.sh
+$ ./cobaltstrike-client.sh</code></pre>
+    <p>Connect with host <code>127.0.0.1</code>, port <code>50050</code>.</p>
+
+    <h2>Step 8 — Proof of Concept</h2>
+    <p><strong>Listener:</strong> name <code>HTTPS</code>, payload Beacon HTTPS, HTTPS hosts set to the redirector IPv6 (square-bracket encapsulated).</p>
+    <p><strong>Payload:</strong> listener HTTPS, system call Indirect, HTTP library winhttp. Execute the resulting <code>.exe</code> on the victim system to establish the beacon callback.</p>
+
+    <h2>Future Considerations</h2>
+    <div class="callout">Next steps are to work on domain fronting and a SOP/script for what to do when the redirector's public IPv6 gets burned.</div>
+  </article>
+</Base>

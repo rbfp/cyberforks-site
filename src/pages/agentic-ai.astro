@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+
+const services = [
+  {
+    n: '01',
+    title: 'AI Assistant Implementation',
+    body: 'Persistent, context-aware assistants with multi-instance architecture, long-term memory, tool integration, and human-oversight controls.',
+  },
+  {
+    n: '02',
+    title: 'Agentic DevSecOps',
+    body: 'Security-operations AI handling alert triage, incident response, audits, and pipeline integration — with documented reasoning and reversibility.',
+  },
+  {
+    n: '03',
+    title: 'AI Security Guardrails',
+    body: 'Prompt-injection defense, output validation, tool-call governance, and permission boundaries for agentic systems.',
+  },
+  {
+    n: '04',
+    title: 'Vibe Coding Enablement',
+    body: 'Team adoption support for AI coding tools — with code-review practices and collaboration habits that keep quality high.',
+  },
+];
+---
+<Base title="Agentic AI" description="Production-grade agentic AI built security-first — assistants, DevSecOps, guardrails, and enablement.">
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Experience</p>
+      <h1>Agentic AI</h1>
+      <p class="lede">Cyberforks develops AI systems emphasizing security for organizations needing production-grade solutions — grounded in real-world experience deploying multi-instance systems, not theoretical frameworks.</p>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="grid grid--2">
+      {services.map((s) => (
+        <div class="card">
+          <span class="card__num">{s.n}</span>
+          <h3>{s.title}</h3>
+          <p class="muted">{s.body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section--tight wrap">
+    <div class="card" style="text-align:center;padding:2.5rem 1.5rem;background:var(--bg-raised)">
+      <h2 style="margin-bottom:0.6rem">Building something agentic?</h2>
+      <p class="muted" style="max-width:46ch;margin-inline:auto">Whether it's a production assistant or guardrails for a system you already run, let's scope it to your real environment.</p>
+      <a class="btn btn--primary" href="/contact-me" style="margin-top:1rem">Get in touch</a>
+    </div>
+  </section>
+</Base>

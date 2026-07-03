@@ -1,0 +1,128 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Rowdy Roddy Red Team Infrastructure" description="A playbook for the administrative and technical logistics of a red team engagement.">
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Playbook · Red Team</p>
+      <h1>Rowdy Roddy Red Team Infrastructure</h1>
+      <p class="lede">A playbook for completing the administrative and technical logistics of a red team engagement.</p>
+    </div>
+  </section>
+
+  <article class="section wrap prose">
+    <p class="byline">Feb 10 · Robert Cao</p>
+
+    <h2>Learning Objectives</h2>
+    <div class="callout">The overall goal is to hand you a playbook on how to complete the administrative and technical logistics for a red team engagement.</div>
+
+    <h2>Step 0 — Define the Scope &amp; Objectives</h2>
+    <p>This phase is kickoff calls and scoping meetings. Key definitions:</p>
+    <ul>
+      <li><strong>Engagement Duration</strong> — weeks or months?</li>
+      <li><strong>Primary Goals</strong> — testing enterprise security controls or SOC procedures?</li>
+      <li><strong>Detection Risk</strong> — is the blue team active or passive?</li>
+      <li><strong>Get Out of Jail Free Card</strong> — a designated resource vouching for your activities</li>
+      <li><strong>Lateral Limits</strong> — off-limits areas</li>
+    </ul>
+
+    <h2>Step 1 — Leverage Threat Intel for Adversary Emulation</h2>
+    <p><strong>Threat intelligence</strong> is the process of collecting, analyzing, and applying information about adversaries to improve security defenses.</p>
+    <h3>Understanding TTPs</h3>
+    <ul>
+      <li><strong>Tactics</strong> — the <em>why</em> behind an attack (Initial Access, Privilege Escalation)</li>
+      <li><strong>Techniques</strong> — <em>how</em> adversaries achieve goals (Spearphishing, Credential Dumping)</li>
+      <li><strong>Procedures</strong> — specific threat-group implementations</li>
+    </ul>
+
+    <h2>Step 2 — Develop a Tailored Attack Plan</h2>
+    <h3>Mapping Intel to MITRE ATT&amp;CK</h3>
+    <ol>
+      <li>Define the target industry</li>
+      <li>Download the latest <a href="https://www.verizon.com/business/resources/reports/dbir/" target="_blank" rel="noopener">Verizon DBIR</a></li>
+      <li>Find the industry in the report</li>
+      <li>Map top patterns to MITRE ATT&amp;CK terminology — e.g. Social Engineering = <code>T1566</code>, Basic Web Application Attack = <code>T1190</code></li>
+      <li>Identify actor motives (e.g. Financial)</li>
+      <li>Google Dork: <code>site:attack.mitre.org "retail" "T1566" "T1190" "financially motivated"</code></li>
+      <li>Open the corresponding MITRE Group APT page</li>
+    </ol>
+    <h3>Creating the ATT&amp;CK Plan</h3>
+    <ol>
+      <li>Visit the attack group's MITRE Group page</li>
+      <li>Click ATT&amp;CK Navigator &gt; View</li>
+      <li>Google "&lt;APT&gt; recent attacks"</li>
+      <li>Create an outline of the TTPs to use — templates: Injects Plan, Injects Plan Example. Headers: Tactic | Technique ID | Name | Description | Target | Command | Flag | MD5</li>
+      <li>Systematically develop the plan through each tactic</li>
+    </ol>
+    <p>Use tools like PowerPoint, Keynote, or <a href="https://tldraw.com" target="_blank" rel="noopener">tldraw.com</a> to create a data-flow diagram visualizing the attack chain.</p>
+
+    <h2>Step 3 — Design &amp; Deploy C2 Infrastructure</h2>
+    <h3>Infrastructure Components</h3>
+    <ul>
+      <li><strong>Cloud Hosting (IaaS)</strong> — AWS, Azure, GCP (free-tier); Terraform; Ansible; EC2s, VPCs</li>
+      <li><strong>Redirectors</strong> — Nginx, Caddy, HAProxy; Cloudflare / CloudFront domain fronting; basic redirector with iptables</li>
+      <li><strong>C2 Framework</strong> — Sliver (free), Empire (free), Cobalt Strike (paid)</li>
+      <li><strong>Additional</strong> — bastion host, phishing/payload server, logging server</li>
+    </ul>
+    <div class="callout"><strong>3 core requirements:</strong> (1) a goal and permission to pursue it, (2) an attack plan emulating a relevant threat actor, (3) domain names to hide traffic.</div>
+
+    <h3>Acquiring Domains</h3>
+    <p>Domain names are critical for generating legitimate-looking traffic. Strategy: revive expired domains with history to avoid proxy detection. Using <a href="https://expireddomains.net" target="_blank" rel="noopener">ExpiredDomains.net</a>, sort deleted domains by BackLinks (BL), and prioritize WBY (whois first seen) and ABY (archive.org first seen).</p>
+
+    <h2>AWS Infrastructure Setup</h2>
+    <div class="callout">Setup following this guide remains free under the AWS Free Tier. Costs below reflect full monthly operation.</div>
+
+    <h3>Creating a VPC</h3>
+    <ul>
+      <li>Name <code>TestVPC</code>, IPv4 CIDR <code>10.0.0.0/16</code>, Amazon-provided IPv6</li>
+      <li>1 availability zone, 1 public + 1 private subnet, no NAT gateway</li>
+      <li>Enable DNS hostnames + DNS resolution; add an IPv6 CIDR to the public subnet</li>
+    </ul>
+    <h3>Internet Gateway &amp; Subnets</h3>
+    <ul>
+      <li>Create <code>RedTeam-IGW</code> and attach it to <code>TestVPC</code></li>
+      <li>Public subnet: auto-assign IPv6, disable auto-assign public IPv4</li>
+      <li>Private subnet: auto-assign IPv4</li>
+      <li>Public route table: add <code>::/0</code> → IGW. Private route table: remove any <code>::/0</code> route, keep <code>10.0.0.0/16</code></li>
+    </ul>
+
+    <h2>AWS Pricing &amp; Costs</h2>
+    <p>Example full-operation infrastructure (24/7):</p>
+    <ul>
+      <li>Bastion Host (t3.micro): $0 (free tier)</li>
+      <li>Redirector (t3.micro): ~$7/mo</li>
+      <li>Phishing Server (t3.micro): ~$7/mo</li>
+      <li>Payload Server (t3.micro): ~$7/mo</li>
+      <li>Cobalt Strike Team Server (t3.small): ~$14/mo</li>
+      <li>RedELK Logging Server (t3.medium): ~$28/mo</li>
+    </ul>
+    <div class="callout"><strong>Grand total: ~$65/month</strong> (budget ~$120/month to be safe). Elastic IPv4 costs $0.005/hr; public IPv6 and private IPv4 are free.</div>
+
+    <h2>Setting Up EC2 Instances</h2>
+    <h3>Bastion Host</h3>
+    <p>A server at the perimeter of a network, designed as a single point of entry for authorized users to access a private network from the public internet. Ubuntu, t3.micro, public subnet, IPv6 only (no public IPv4), <code>Bastion-SG</code>, 8&nbsp;GB gp3, termination protection on, IMDSv2 only.</p>
+    <pre><code>$ chmod 600 ./bastion-key.pem
+$ ssh -i bastion-key.pem ubuntu@[IPv6-ADDRESS]</code></pre>
+    <p>A Cloudflare Tunnel (<code>cloudflared</code>) can be installed for SSH access in the IPv6-only environment.</p>
+
+    <h3>Redirector</h3>
+    <p>Hides the C2 server's real IP and routes traffic between targets and C2. Ubuntu, t2.micro, public subnet, IPv6 only, <code>Public-SG</code>, 8&nbsp;GB gp3. Reach it by hopping through the bastion:</p>
+    <pre><code>$ scp -i bastion-key.pem ./redirector-key.pem ubuntu@[BASTION_IPv6]:/home/ubuntu/bastion-host/redirector-key.pem
+$ ssh -i bastion-key.pem ubuntu@[BASTION_IPv6]
+$ ssh -i redirector-key.pem ubuntu@[REDIRECTOR_IPv6]</code></pre>
+
+    <h3>C2 Server</h3>
+    <p>Ubuntu, t2.micro, <strong>private</strong> subnet, no public IPv4/IPv6, <code>Private-SG</code>, 20&nbsp;GB gp3 with encryption enabled. Reachable only from within the bastion.</p>
+
+    <hr />
+    <h2>References</h2>
+    <ul>
+      <li><a href="https://www.verizon.com/business/resources/reports/dbir/" target="_blank" rel="noopener">Verizon DBIR</a></li>
+      <li><a href="https://attack.mitre.org" target="_blank" rel="noopener">MITRE ATT&amp;CK</a></li>
+      <li><a href="https://github.com/rbfp/Gir-An-Agentic-AI-Assistant" target="_blank" rel="noopener">Agentic AI Assistant</a></li>
+      <li><a href="https://github.com/rbfp/agentic-ai-assistant-security-guide" target="_blank" rel="noopener">Agentic AI Security Guardrails</a></li>
+      <li><a href="https://expireddomains.net" target="_blank" rel="noopener">ExpiredDomains.net</a></li>
+      <li><a href="https://github.com/cloudflare/cloudflared/releases" target="_blank" rel="noopener">Cloudflare Tunnel (cloudflared)</a></li>
+    </ul>
+  </article>
+</Base>
