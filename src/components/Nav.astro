@@ -3,8 +3,8 @@ import { nav, site } from '../site.config.mjs';
 ---
 <header class="nav">
   <div class="wrap nav__inner">
-    <a href="/" class="nav__brand">
-      <span class="nav__mark">🍴</span>
+    <a href="/" class="nav__brand" aria-label="Cyberforks home">
+      <img class="nav__mark" src="/images/logo-mark.png" alt="Cyberforks" width="32" height="32" />
       <span>Cyberforks</span>
     </a>
 
@@ -43,7 +43,7 @@ import { nav, site } from '../site.config.mjs';
   .nav__inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
   .nav__brand { display: flex; align-items: center; gap: 0.55rem; font-weight: 700; font-size: 1.1rem; color: var(--text); }
   .nav__brand:hover { text-decoration: none; }
-  .nav__mark { font-size: 1.2rem; }
+  .nav__mark { width: 32px; height: 32px; display: block; }
 
   .nav__links { display: flex; align-items: center; gap: 0.35rem; }
   .nav__link {

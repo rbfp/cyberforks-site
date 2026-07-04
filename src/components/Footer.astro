@@ -4,7 +4,7 @@ import { site } from '../site.config.mjs';
 <footer class="footer">
   <div class="wrap footer__inner">
     <div>
-      <div class="footer__brand">🍴 Cyberforks</div>
+      <img class="footer__logo" src="/images/logo-full.png" alt="Cyberforks" width="200" />
       <p class="footer__tag">{site.tagline}</p>
     </div>
     <div class="footer__links">
@@ -26,7 +26,7 @@ import { site } from '../site.config.mjs';
     display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: space-between;
     padding-block: 2.5rem 1.5rem;
   }
-  .footer__brand { font-weight: 700; font-size: 1.05rem; margin-bottom: 0.4rem; }
+  .footer__logo { width: 200px; max-width: 60vw; height: auto; margin-bottom: 0.7rem; opacity: 0.92; }
   .footer__tag { color: var(--text-mute); max-width: 34ch; margin: 0; font-size: 0.95rem; }
   .footer__links { display: flex; flex-direction: column; gap: 0.5rem; }
   .footer__links a { color: var(--text-dim); }

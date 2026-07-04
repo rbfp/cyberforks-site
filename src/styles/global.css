@@ -5,18 +5,18 @@
    ============================================================ */
 
 :root {
-  /* palette */
-  --bg:        #0d0d10;
-  --bg-raised: #16161b;
-  --bg-card:   #1b1b22;
-  --border:    #2a2a33;
-  --text:      #e9e9ec;
-  --text-dim:  #a3a3ad;
-  --text-mute: #6f6f7a;
-  --accent:    #5ee0b0;   /* fork-green */
-  --accent-dim:#3fae86;
-  --accent-ink:#062018;
-  --danger:    #ff6b6b;
+  /* palette — warm light theme, sampled from the Cyberforks logo (cream + charcoal ink) */
+  --bg:        #fbf7f4;   /* brand cream (matches logo background) */
+  --bg-raised: #f3ede4;   /* deeper warm — footer, insets, CTA panels */
+  --bg-card:   #ffffff;   /* cards pop clean-white on the cream */
+  --border:    #e7ded2;   /* warm hairline */
+  --text:      #17181c;   /* charcoal ink (matches logo) */
+  --text-dim:  #55524b;   /* warm secondary text */
+  --text-mute: #8b857a;   /* warm muted / captions */
+  --accent:    #0f766e;   /* deep teal — trustworthy, pairs with charcoal-on-cream */
+  --accent-dim:#0b5c55;
+  --accent-ink:#ffffff;   /* text on accent fills */
+  --danger:    #c0392b;
 
   /* type */
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -160,8 +160,8 @@ hr { border: 0; border-top: 1px solid var(--border); margin: 2.5rem 0; }
   content: "";
   position: absolute; inset: 0;
   background:
-    radial-gradient(60% 80% at 75% 0%, rgba(94,224,176,0.14), transparent 60%),
-    radial-gradient(50% 60% at 0% 100%, rgba(94,224,176,0.06), transparent 60%);
+    radial-gradient(60% 80% at 78% 0%, rgba(15,118,110,0.10), transparent 62%),
+    radial-gradient(55% 65% at 0% 100%, rgba(15,118,110,0.05), transparent 60%);
   pointer-events: none;
 }
 .hero > .wrap { position: relative; }
