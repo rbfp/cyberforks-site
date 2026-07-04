@@ -20,7 +20,16 @@ import { nav, site } from '../site.config.mjs';
             <button class="nav__link nav__group-btn" type="button">{item.label} <span class="nav__caret">▾</span></button>
             <div class="nav__menu">
               {item.children.map((c) => (
-                <a href={c.href} target={c.external ? '_blank' : undefined} rel={c.external ? 'noopener' : undefined}>{c.label}</a>
+                <a href={c.href} target={c.external ? '_blank' : undefined} rel={c.external ? 'noopener' : undefined}>
+                  <span>{c.label}</span>
+                  {c.external && (
+                    <svg class="nav__ext" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                      <path d="M15 3h6v6" />
+                      <path d="M10 14 21 3" />
+                    </svg>
+                  )}
+                </a>
               ))}
             </div>
           </div>
@@ -71,8 +80,10 @@ import { nav, site } from '../site.config.mjs';
     box-shadow: 0 12px 40px rgba(0,0,0,0.45);
   }
   .nav__group:hover .nav__menu, .nav__group:focus-within .nav__menu { display: flex; }
-  .nav__menu a { color: var(--text-dim); padding: 0.55rem 0.7rem; border-radius: 8px; font-size: 0.95rem; }
+  .nav__menu a { color: var(--text-dim); padding: 0.55rem 0.7rem; border-radius: 8px; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 0.4em; }
   .nav__menu a:hover { color: var(--text); background: var(--bg-raised); text-decoration: none; }
+  .nav__ext { flex: none; opacity: 0.5; }
+  .nav__menu a:hover .nav__ext { opacity: 0.85; }
 
   .nav__cta { margin-left: 0.5rem; padding: 0.5rem 1.1rem; font-size: 0.9rem; }
 
