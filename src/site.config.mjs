@@ -5,7 +5,7 @@
 
 export const site = {
   name: 'Cyberforks',
-  tagline: "Proving your cybersecurity actually works, one byte at a time.",
+  tagline: "Proving cybersecurity actually works, one byte at a time.",
   email: 'robert@cyberforks.com',
   blog: 'https://blog.cyberforks.com',
   github: 'https://github.com/rbfp',

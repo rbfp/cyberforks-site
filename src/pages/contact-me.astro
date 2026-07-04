@@ -2,33 +2,32 @@
 import Base from '../layouts/Base.astro';
 import { site } from '../site.config.mjs';
 ---
-<Base title="Contact" description="Get in touch with Cyberforks.">
+<Base title="Contact" description="Get in touch with Robert Cao.">
   <section class="hero">
     <div class="wrap">
       <p class="eyebrow">Contact</p>
-      <h1>Let's talk.</h1>
-      <p class="lede">Have an environment worth testing, a system worth hardening, or an audit worth doing right? Reach out — every engagement starts with a conversation, not a templated SOW.</p>
+      <h1>Let's connect.</h1>
+      <p class="lede">Whether it's about a role, a collaboration, or just some good security conversation — reach out. I'm easy to find and I actually reply.</p>
     </div>
   </section>
 
   <section class="section wrap">
     <div class="grid grid--2" style="align-items:start;gap:2.5rem">
       <!--
-        NOTE: This is a static site — there's no server to receive a form POST.
-        Direct email is the reliable default. If a form is wanted later, wire it
-        to a serverless handler (Cloudflare Pages Functions / Formspree) and swap
-        this block. Kept simple + honest for the proof of concept.
+        NOTE: static site — no server to receive a form POST. Direct email is
+        the reliable default. If a form is wanted later, wire it to a serverless
+        handler. Kept simple + honest.
       -->
       <div>
         <h2>Email</h2>
-        <p class="muted">The fastest way to reach Cyberforks. Real replies from a real practitioner.</p>
+        <p class="muted">The fastest way to reach me. Real replies, from me.</p>
         <a class="btn btn--primary" href={`mailto:${site.email}`}>{site.email}</a>
       </div>
       <div>
         <h2>Elsewhere</h2>
         <ul style="list-style:none;padding:0;color:var(--text-dim)">
           <li style="margin-bottom:0.6rem"><a href={site.github} target="_blank" rel="noopener">GitHub</a> — projects &amp; source</li>
-          <li style="margin-bottom:0.6rem"><a href={site.blog} target="_blank" rel="noopener">Blog</a> — playbooks &amp; write-ups</li>
+          <li style="margin-bottom:0.6rem"><a href={site.blog} target="_blank" rel="noopener">Blog</a> — playbooks &amp; writeups</li>
           <li style="margin-bottom:0.6rem"><a href={site.instagram} target="_blank" rel="noopener">Instagram</a> — @cyberforksofficial</li>
         </ul>
       </div>

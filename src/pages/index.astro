@@ -5,30 +5,30 @@ const services = [
   {
     title: 'Agentic AI',
     href: '/agentic-ai',
-    body: 'Production-grade AI systems built security-first — persistent assistants, agentic DevSecOps, and guardrails from real multi-instance deployments, not theory.',
+    body: 'Building AI systems security-first — persistent assistants, agentic DevSecOps, and guardrails, drawn from real multi-instance deployments, not theory.',
   },
   {
     title: 'Offensive Security',
     href: '/offsec',
-    body: 'Adversarial engagements against real environments — pentest, red team, purple team, and hands-on security engineering. Scoped to an objective, delivered as findings you can act on.',
+    body: 'Adversarial security against real environments — pentest, red team, purple team, and hands-on security engineering. Objective-driven, and I document the full attack chain.',
   },
   {
     title: 'Audits',
     href: '/audits',
-    body: "A practitioner's read, not a templated report — NIST CSF, HIPAA, SOC 2 policy prep, and general cyber/IT posture audits with prioritized, executive-ready findings.",
+    body: "Hands-on security and compliance reads — NIST CSF, HIPAA, SOC 2 prep, and general cyber/IT posture, with prioritized, plain-English findings.",
   },
 ];
 ---
-<Base title={null} description="Cyberforks — proving your cybersecurity actually works, one byte at a time.">
+<Base title={null} description="Robert Cao — security practitioner. Offensive security, agentic AI, and audits, with the work written up.">
   <!-- Hero -->
   <section class="hero">
     <div class="wrap">
-      <p class="eyebrow">Cyberforks · RBfP</p>
-      <h1>Proving your cybersecurity<br />actually works,<br /><span style="color:var(--accent)">one byte at a time.</span></h1>
-      <p class="lede">Hands-on, applicable cybersecurity practice — offensive security, agentic AI, and audits delivered by a practitioner who builds the thing, not a consultant who hands you a deck.</p>
+      <p class="eyebrow">Robert Cao · Cyberforks</p>
+      <h1>Proving cybersecurity<br />actually works,<br /><span style="color:var(--accent)">one byte at a time.</span></h1>
+      <p class="lede">I'm Robert. I work across offensive security, agentic AI, and security auditing — hands-on, building and breaking real systems, and writing up what I learn along the way.</p>
       <div style="display:flex;gap:0.8rem;flex-wrap:wrap;margin-top:2rem">
-        <a class="btn btn--primary" href="/contact-me">Start a conversation</a>
-        <a class="btn btn--ghost" href="/offsec">See what we do</a>
+        <a class="btn btn--primary" href="/offsec">See what I work on</a>
+        <a class="btn btn--ghost" href="https://blog.cyberforks.com" target="_blank" rel="noopener">Read the writeups</a>
       </div>
     </div>
   </section>
@@ -38,22 +38,22 @@ const services = [
     <div class="grid grid--2" style="gap:2.5rem;align-items:start">
       <div>
         <p class="eyebrow">Who is this?</p>
-        <h2>Cyberforks is Robert.</h2>
-        <p class="muted">Cyberforks is a space for hands-on and applicable cybersecurity practice — practical, results-oriented security work run under the Cyberforks brand.</p>
+        <h2>Cyberforks is me — Robert.</h2>
+        <p class="muted">Cyberforks is where I do hands-on, applicable cybersecurity — practical, results-oriented security work, and the home for my projects and writeups.</p>
       </div>
       <div>
         <p class="eyebrow">For the community</p>
         <h2>Playbooks, not paywalls.</h2>
-        <p class="muted">Every engagement produces step-by-step guides and documentation shared back with the community — the same playbooks used on real work, written down so others can run them too.</p>
+        <p class="muted">When I work something out, I write it down — step-by-step guides and documentation from real work, shared so others can run the same plays.</p>
         <a href="https://blog.cyberforks.com" target="_blank" rel="noopener">Read the blog →</a>
       </div>
     </div>
   </section>
 
-  <!-- Services -->
+  <!-- Areas -->
   <section class="section wrap" style="padding-top:0">
     <p class="eyebrow">Experience</p>
-    <h2 style="margin-bottom:1.6rem">What Cyberforks does</h2>
+    <h2 style="margin-bottom:1.6rem">What I work on</h2>
     <div class="grid grid--3">
       {services.map((s) => (
         <a href={s.href} class="card" style="display:block;color:inherit">
@@ -65,11 +65,11 @@ const services = [
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- Contact -->
   <section class="section--tight wrap">
     <div class="card" style="text-align:center;padding:2.5rem 1.5rem;background:var(--bg-raised)">
-      <h2 style="margin-bottom:0.6rem">Have a problem worth proving out?</h2>
-      <p class="muted" style="max-width:48ch;margin-inline:auto">Every engagement is scoped to your environment, your threat model, and your objective — not a templated SOW.</p>
+      <h2 style="margin-bottom:0.6rem">Looking to connect?</h2>
+      <p class="muted" style="max-width:48ch;margin-inline:auto">Whether it's a role, a collaboration, or just good security talk — my inbox is open.</p>
       <a class="btn btn--primary" href="/contact-me" style="margin-top:1rem">Get in touch</a>
     </div>
   </section>
