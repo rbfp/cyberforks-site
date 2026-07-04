@@ -47,13 +47,13 @@ $ cd redteam-infra</code></pre>
 
     <h2>Step 4 — Verify Deployment</h2>
     <p>Use <code>./manage_aws.sh</code> to start, stop, list instances, and check billing. Verify in the AWS Console that instances have no public IPv4 addresses, then test SSH through the bastion:</p>
-    <pre><code>$ ssh -i ~/redteam_infra/build/&#123;&#123; project_name &#125;&#125;-bastion.pem bastion@&#123;&#123; bastion_ipv6 &#125;&#125;
+    <pre><code>$ ssh -i ~/redteam-infra/build/&#123;&#123; project_name &#125;&#125;-bastion.pem bastion@&#123;&#123; bastion_ipv6 &#125;&#125;
 $ ssh -i .ssh/internal.pem c2server@&#123;&#123; c2_ipv4 &#125;&#125;</code></pre>
 
     <h2>Step 5 — Cobalt Strike Install</h2>
     <p>Run <code>./cobalt_setup.sh</code> to automate dependency install and file deployment. It prompts for the redirector IPv6, C2 server IPv4, redirector IPv4, project name, and the Cobalt Strike 7z password.</p>
 
-    <h2>Step 7 — Cobalt Server Setup</h2>
+    <h2>Step 6 — Cobalt Server Setup</h2>
     <p>Multiple concurrent terminal sessions are required.</p>
     <p><strong>On the C2 server:</strong></p>
     <pre><code>$ chmod +x ./CS491/Server/teamserver ./CS491/Server/TeamServerImage
@@ -66,8 +66,9 @@ $ ./teamserver &#123;&#123; c2_ipv4 &#125;&#125; &#123;&#123; cobalt_server_pass
     <pre><code>$ chmod +x ./cobaltstrike-client.sh
 $ ./cobaltstrike-client.sh</code></pre>
     <p>Connect with host <code>127.0.0.1</code>, port <code>50050</code>.</p>
+    <div class="callout">The HTTPS beacon needs a valid TLS cert on the redirector — provision one with Let's Encrypt (<code>certbot</code>) against your domain, or terminate TLS at the redirector before forwarding to the team server.</div>
 
-    <h2>Step 8 — Proof of Concept</h2>
+    <h2>Step 7 — Proof of Concept</h2>
     <p><strong>Listener:</strong> name <code>HTTPS</code>, payload Beacon HTTPS, HTTPS hosts set to the redirector IPv6 (square-bracket encapsulated).</p>
     <p><strong>Payload:</strong> listener HTTPS, system call Indirect, HTTP library winhttp. Execute the resulting <code>.exe</code> on the victim system to establish the beacon callback.</p>
 

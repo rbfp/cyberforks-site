@@ -25,12 +25,14 @@ export const nav = [
   },
   {
     label: 'Projects',
+    // Order: AI repos → red-team infra repos → blog (bottom). Red-team items
+    // point at their GitHub repos, not the on-site writeups.
     children: [
-      { label: 'Agentic AI Assistant', href: 'https://github.com/rbfp/Gir-An-Agentic-AI-Assistant', external: true },
-      { label: 'Agentic AI Security Guardrails', href: 'https://github.com/rbfp/agentic-ai-assistant-security-guide', external: true },
+      { label: 'github: Agentic AI Assistant', href: 'https://github.com/rbfp/Gir-An-Agentic-AI-Assistant', external: true },
+      { label: 'github: Agentic AI Security Guardrails', href: 'https://github.com/rbfp/agentic-ai-assistant-security-guide', external: true },
+      { label: 'github: Manual Red Team Infrastructure', href: 'https://github.com/rbfp/manual-red-team-infrastructure', external: true },
+      { label: 'github: Automating Red Team Infrastructure', href: 'https://github.com/rbfp/redteam-infra', external: true },
       { label: 'Blog: Automated Things My AI Does', href: 'https://blog.cyberforks.com', external: true },
-      { label: 'Automating Red Team Infrastructure', href: '/automating-red-team-infrastructure' },
-      { label: 'Rowdy Roddy Red Team Infrastructure', href: '/rowdy-roddy-red-team-infrastructure' },
     ],
   },
   { label: 'Contact', href: '/contact-me' },

@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+
+const repo = 'https://github.com/rbfp/manual-red-team-infrastructure';
+
+const steps = [
+  'Define the scope & objectives (ROE first)',
+  'Leverage threat intel for adversary emulation',
+  'Develop a tailored attack plan (MITRE ATT&CK)',
+  'Design the C2 infrastructure & acquire domains',
+  'Build the AWS network (VPC, IGW, subnets)',
+  'Create the security groups',
+  'Launch the EC2 instances (bastion, redirector, C2)',
+  'Configure the redirector (socat/iptables or filtering nginx)',
+  'Install & start the C2 framework (Sliver / Cobalt Strike)',
+  'Wire up domains, DNS & TLS',
+  'Stand up support servers (phishing, payload, RedELK)',
+  'Operational security & teardown',
+];
+---
+<Base title="Manual Red Team Infrastructure" description="A playbook for the administrative and technical logistics of a red team engagement — the full writeup on GitHub.">
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Playbook · Red Team</p>
+      <h1>Manual Red Team Infrastructure</h1>
+      <p class="lede">A start-to-finish playbook for the administrative and technical logistics of a red team engagement — scoping and adversary emulation through standing up, wiring, and tearing down operational C2 infrastructure on AWS.</p>
+      <div style="margin-top:2rem">
+        <a class="btn btn--primary" href={repo} target="_blank" rel="noopener">Read the full playbook on GitHub →</a>
+      </div>
+    </div>
+  </section>
+
+  <article class="section wrap prose">
+    <p class="muted"><strong>Authorization first.</strong> The whole guide assumes a signed scope and a written rules-of-engagement document. Red team infrastructure run without authorization is just an attack — none of it gets built until the paperwork is done.</p>
+
+    <h2>What it covers</h2>
+    <ol>
+      {steps.map((s) => <li>{s}</li>)}
+    </ol>
+
+    <div class="callout">The complete step-by-step — with the AWS network build, security-group rules, redirector configs, C2 install, DNS/TLS wiring, and teardown checklist — lives in the repo.</div>
+
+    <p><a href={repo} target="_blank" rel="noopener">github.com/rbfp/manual-red-team-infrastructure →</a></p>
+  </article>
+</Base>

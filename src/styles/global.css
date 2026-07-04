@@ -115,8 +115,9 @@ hr { border: 0; border-top: 1px solid var(--border); margin: 2.5rem 0; }
 
 /* ---- cards / grids ---- */
 .grid { display: grid; gap: 1.1rem; }
-.grid--2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-.grid--3 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+/* --2 is a true 2-up (→ 2x2 for four cards); --3 is a 3-up. Both collapse to 1 on mobile. */
+.grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
 .card {
   background: var(--bg-card);
@@ -191,6 +192,11 @@ hr { border: 0; border-top: 1px solid var(--border); margin: 2.5rem 0; }
   margin-bottom: 1.5rem;
 }
 
+/* grids collapse gracefully: 3-up → 2-up on tablet, everything → 1-up on phone */
+@media (max-width: 860px) {
+  .grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 @media (max-width: 640px) {
   body { font-size: 16px; }
+  .grid--2, .grid--3 { grid-template-columns: 1fr; }
 }
