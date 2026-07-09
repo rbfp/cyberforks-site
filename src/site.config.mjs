@@ -32,8 +32,7 @@ export const nav = [
       { label: 'GH: Agentic AI Security Guardrails', href: 'https://github.com/rbfp/agentic-ai-assistant-security-guide', external: true },
       { label: 'GH: Manual Red Team Infrastructure', href: 'https://github.com/rbfp/manual-red-team-infrastructure', external: true },
       { label: 'GH: Automating Red Team Infrastructure', href: 'https://github.com/rbfp/redteam-infra', external: true },
-      { label: 'Blog: Automated Things My AI Does', href: 'https://blog.cyberforks.com', external: true },
+      { label: 'Automated Actions, Autonomously Authored', href: 'https://blog.cyberforks.com', external: true },
     ],
   },
-  { label: 'Contact', href: '/contact-me' },
 ];
