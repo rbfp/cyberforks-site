@@ -1,0 +1,95 @@
+---
+import Base from '../layouts/Base.astro';
+
+// Projects + writeups. `external` links go to GitHub; the rest are on-site writeups.
+const projects = [
+  {
+    title: 'Agentic AI',
+    href: '/agentic-ai',
+    tag: 'Writeup',
+    body: 'Building AI systems security-first — persistent assistants, agentic DevSecOps, and guardrails, from real multi-instance deployments.',
+  },
+  {
+    title: 'Offensive Security',
+    href: '/offsec',
+    tag: 'Writeup',
+    body: 'Adversarial security against real environments — pentest, red team, purple team — with the full attack chain documented.',
+  },
+  {
+    title: 'Audits',
+    href: '/audits',
+    tag: 'Writeup',
+    body: 'Hands-on security and compliance reads — NIST CSF, HIPAA, SOC 2 prep — with prioritized, plain-English findings.',
+  },
+  {
+    title: 'Manual Red Team Infrastructure',
+    href: '/manual-red-team-infrastructure',
+    tag: 'Writeup + Code',
+    body: 'A playbook for the administrative and technical logistics of standing up red team infrastructure by hand.',
+  },
+  {
+    title: 'Automating Red Team Infrastructure',
+    href: '/automating-red-team-infrastructure',
+    tag: 'Writeup + Code',
+    body: 'Building the same red team infrastructure with Terraform — the automated companion to the manual playbook.',
+  },
+  {
+    title: 'Agentic AI Assistant (GIR)',
+    href: 'https://github.com/rbfp/Gir-An-Agentic-AI-Assistant',
+    external: true,
+    tag: 'Code',
+    body: 'The persistent, multi-instance AI assistant framework behind the fleet — source on GitHub.',
+  },
+  {
+    title: 'Agentic AI Security Guardrails',
+    href: 'https://github.com/rbfp/agentic-ai-assistant-security-guide',
+    external: true,
+    tag: 'Code',
+    body: 'The guardrail and hardening layer for agentic AI — action tiers, hooks, and approval gates — on GitHub.',
+  },
+];
+---
+<Base title="Projects & Writeups" description="Robert Cao's projects and writeups — offensive security, agentic AI, red team infrastructure, and audits, documented in full.">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Projects &amp; Writeups</p>
+      <h1>The work, <span style="color:var(--accent)">written up.</span></h1>
+      <p class="lede">Hands-on security work across offensive security, agentic AI, and infrastructure — each with the full playbook or the code behind it. When I work something out, I document it.</p>
+      <div style="display:flex;gap:0.8rem;flex-wrap:wrap;margin-top:2rem">
+        <a class="btn btn--primary" href="https://blog.cyberforks.com" target="_blank" rel="noopener">Read the blog</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects grid -->
+  <section class="section wrap" style="padding-top:0">
+    <div class="grid grid--3">
+      {projects.map((p) => (
+        <a
+          href={p.href}
+          target={p.external ? '_blank' : undefined}
+          rel={p.external ? 'noopener' : undefined}
+          class="card"
+          style="display:block;color:inherit"
+        >
+          <span class="muted" style="font-family:var(--font-mono);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.05em">{p.tag}</span>
+          <h3 style="color:var(--accent);margin-top:0.3rem">{p.title}</h3>
+          <p class="muted" style="font-size:0.96rem">{p.body}</p>
+          <span class="muted" style="font-family:var(--font-mono);font-size:0.8rem">
+            {p.external ? 'View on GitHub →' : 'Read the writeup →'}
+          </span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Blog pointer -->
+  <section class="section--tight wrap">
+    <div class="card" style="text-align:center;padding:2.5rem 1.5rem;background:var(--bg-raised)">
+      <h2 style="margin-bottom:0.6rem">More on the blog</h2>
+      <p class="muted" style="max-width:52ch;margin-inline:auto">Step-by-step guides and lessons from real work — the ongoing writeups live on the blog.</p>
+      <a class="btn btn--primary" href="https://blog.cyberforks.com" target="_blank" rel="noopener" style="margin-top:1rem">Read the writeups</a>
+    </div>
+  </section>
+</Base>
