@@ -17,7 +17,11 @@ import { nav, site } from '../site.config.mjs';
       {nav.map((item) => (
         item.children ? (
           <div class="nav__group">
-            <button class="nav__link nav__group-btn" type="button">{item.label} <span class="nav__caret">▾</span></button>
+            {item.href ? (
+              <a class="nav__link nav__group-btn" href={item.href}>{item.label} <span class="nav__caret">▾</span></a>
+            ) : (
+              <button class="nav__link nav__group-btn" type="button">{item.label} <span class="nav__caret">▾</span></button>
+            )}
             <div class="nav__menu">
               {item.children.map((c) => (
                 <a href={c.href} target={c.external ? '_blank' : undefined} rel={c.external ? 'noopener' : undefined}>

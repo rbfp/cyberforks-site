@@ -1,0 +1,54 @@
+---
+import Base from '../layouts/Base.astro';
+
+// The verticals I work in — each links to its own deeper page.
+const verticals = [
+  {
+    title: 'Agentic AI',
+    href: '/agentic-ai',
+    body: 'Building AI systems security-first — persistent assistants, agentic DevSecOps, and guardrails, drawn from real multi-instance deployments, not theory.',
+  },
+  {
+    title: 'Offensive Security',
+    href: '/offsec',
+    body: 'Adversarial security against real environments — pentest, red team, purple team, and hands-on security engineering. Objective-driven, and I document the full attack chain.',
+  },
+  {
+    title: 'Audits',
+    href: '/audits',
+    body: 'Hands-on security and compliance reads — NIST CSF, HIPAA, SOC 2 prep, and general cyber/IT posture, with prioritized, plain-English findings.',
+  },
+];
+---
+<Base title="Experience" description="The verticals Robert Cao works in — agentic AI, offensive security, and security auditing.">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Experience</p>
+      <h1>What I <span style="color:var(--accent)">work on.</span></h1>
+      <p class="lede">Hands-on across three areas — agentic AI, offensive security, and audits. All applied, all documented, none of it checkbox theater. Pick a vertical to go deeper.</p>
+    </div>
+  </section>
+
+  <!-- Verticals grid -->
+  <section class="section wrap" style="padding-top:0">
+    <div class="grid grid--3">
+      {verticals.map((v) => (
+        <a href={v.href} class="card" style="display:block;color:inherit">
+          <h3 style="color:var(--accent)">{v.title}</h3>
+          <p class="muted" style="font-size:0.96rem">{v.body}</p>
+          <span class="muted" style="font-family:var(--font-mono);font-size:0.8rem">Learn more →</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section--tight wrap">
+    <div class="card" style="text-align:center;padding:2.5rem 1.5rem;background:var(--bg-raised)">
+      <h2 style="margin-bottom:0.6rem">See the work behind it</h2>
+      <p class="muted" style="max-width:50ch;margin-inline:auto">Every vertical comes with the projects and writeups to back it up.</p>
+      <a class="btn btn--primary" href="/projects" style="margin-top:1rem">Projects &amp; Writeups</a>
+    </div>
+  </section>
+</Base>

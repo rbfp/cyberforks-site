@@ -17,6 +17,7 @@ export const nav = [
   { label: 'Home', href: '/' },
   {
     label: 'Experience',
+    href: '/experience',
     children: [
       { label: 'Agentic AI', href: '/agentic-ai' },
       { label: 'Offensive Security', href: '/offsec' },
@@ -25,6 +26,7 @@ export const nav = [
   },
   {
     label: 'Projects',
+    href: '/projects',
     // Order: AI repos → red-team infra repos → blog (bottom). Red-team items
     // point at their GitHub repos, not the on-site writeups.
     children: [
