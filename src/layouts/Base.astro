@@ -31,5 +31,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
       <slot />
     </main>
     <Footer />
+    <!-- Cloudflare Web Analytics — cookieless visitor telemetry. Goes before
+         </body> per Cloudflare's setup docs. is:inline keeps Astro from
+         bundling/hoisting the third-party beacon so the tag ships verbatim. -->
+    <script
+      is:inline
+      type="module"
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "508c9bf8b6e6468fb0e7c2ea6600f484"}'
+    ></script>
   </body>
 </html>
