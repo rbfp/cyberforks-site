@@ -53,7 +53,7 @@ const services = [
   <section class="hero">
     <div class="wrap">
       <p class="eyebrow">Experience</p>
-      <h1>Offensive Security</h1>
+      <h1 class="offsec-title">Offensive Security</h1>
       <p class="lede">Cyberforks runs adversarial security work against real environments — not checkbox exercises against a stripped-down lab. Every effort targets a clear objective, runs under written rules of engagement, and produces findings an engineer or an executive can actually act on.</p>
     </div>
   </section>
@@ -63,7 +63,7 @@ const services = [
       {services.map((s) => (
         <div class="card">
           <span class="card__num">{s.n}</span>
-          <h3>{s.title}</h3>
+          <h3 class="offsec-title">{s.title}</h3>
           <p class="muted">{s.body}</p>
           <ul>{s.points.map((p) => <li>{p}</li>)}</ul>
           {s.note && <p class="tag">{s.note}</p>}
@@ -98,3 +98,12 @@ const services = [
     </div>
   </section>
 </Base>
+
+<style>
+  /* Offensive Security runs crimson rather than the site teal — the service
+     line is adversarial work, and the page should read that way at a glance.
+     Applies to the page title and the four service cards only; the GitHub
+     project cards below keep the site accent. */
+  .offsec-title { color: var(--crimson); }
+  h1.offsec-title { color: var(--crimson); }
+</style>
