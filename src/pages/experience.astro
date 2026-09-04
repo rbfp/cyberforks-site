@@ -1,8 +1,13 @@
 ---
 import Base from '../layouts/Base.astro';
 
-// The verticals I work in — each links to its own deeper page.
+// Service lines — each links to its own deeper page.
 const verticals = [
+  {
+    title: 'Virtual CISO',
+    href: '/vciso',
+    body: 'Security leadership for organizations that need a program but not yet a full-time executive — assessment, compliance readiness, policy, incident response, and AI governance.',
+  },
   {
     title: 'Agentic AI',
     href: '/agentic-ai',
@@ -11,7 +16,7 @@ const verticals = [
   {
     title: 'Offensive Security',
     href: '/offsec',
-    body: 'Adversarial security against real environments — pentest, red team, purple team, and hands-on security engineering. Objective-driven, and I document the full attack chain.',
+    body: 'Adversarial security against real environments — pentest, red team, purple team, and hands-on security engineering. Objective-driven, with the full attack chain documented.',
   },
   {
     title: 'Audits',
@@ -20,19 +25,19 @@ const verticals = [
   },
 ];
 ---
-<Base title="Experience" description="The verticals Robert Cao works in — agentic AI, offensive security, and security auditing.">
+<Base title="Experience" description="Cyberforks service lines — virtual CISO, agentic AI, offensive security, and security auditing.">
   <!-- Hero -->
   <section class="hero">
     <div class="wrap">
       <p class="eyebrow">Experience</p>
-      <h1>What I <span style="color:var(--accent)">work on.</span></h1>
-      <p class="lede">Hands-on across three areas — agentic AI, offensive security, and audits. All applied, all documented, none of it checkbox theater. Pick a vertical to go deeper.</p>
+      <h1>What we <span style="color:var(--accent)">work on.</span></h1>
+      <p class="lede">Hands-on across four service lines — virtual CISO, agentic AI, offensive security, and audits. All applied, all documented, none of it checkbox theater. Pick a vertical to go deeper.</p>
     </div>
   </section>
 
   <!-- Verticals grid -->
   <section class="section wrap" style="padding-top:0">
-    <div class="grid grid--3">
+    <div class="grid grid--2">
       {verticals.map((v) => (
         <a href={v.href} class="card" style="display:block;color:inherit">
           <h3 style="color:var(--accent)">{v.title}</h3>

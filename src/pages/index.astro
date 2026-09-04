@@ -3,6 +3,11 @@ import Base from '../layouts/Base.astro';
 
 const services = [
   {
+    title: 'Virtual CISO',
+    href: '/vciso',
+    body: 'Security leadership for organizations that need a program but not yet a full-time executive — assessment, compliance readiness, policy, incident response, and AI governance.',
+  },
+  {
     title: 'Agentic AI',
     href: '/agentic-ai',
     body: 'Building AI systems security-first — persistent assistants, agentic DevSecOps, and guardrails, drawn from real multi-instance deployments, not theory.',
@@ -10,7 +15,7 @@ const services = [
   {
     title: 'Offensive Security',
     href: '/offsec',
-    body: 'Adversarial security against real environments — pentest, red team, purple team, and hands-on security engineering. Objective-driven, and I document the full attack chain.',
+    body: 'Adversarial security against real environments — pentest, red team, purple team, and hands-on security engineering. Objective-driven, with the full attack chain documented.',
   },
   {
     title: 'Audits',
@@ -19,15 +24,15 @@ const services = [
   },
 ];
 ---
-<Base title={null} description="Robert Cao — security practitioner. Offensive security, agentic AI, and audits, with the work written up.">
+<Base title={null} description="Cyberforks LLC — a California cybersecurity consultancy. Virtual CISO, offensive security, agentic AI, and audits, with the work written up.">
   <!-- Hero -->
   <section class="hero">
     <div class="wrap">
-      <p class="eyebrow">Robert Cao · Cyberforks</p>
+      <p class="eyebrow">Cyberforks LLC</p>
       <h1>Proving cybersecurity<br />actually works,<br /><span style="color:var(--accent)">one byte at a time.</span></h1>
-      <p class="lede">I'm Robert. I work across offensive security, agentic AI, and security auditing — hands-on, building and breaking real systems, and writing up what I learn along the way.</p>
+      <p class="lede">Cyberforks is a cybersecurity consultancy working across virtual CISO leadership, offensive security, agentic AI, and security auditing — hands-on, building and breaking real systems, and publishing what comes out of the work.</p>
       <div style="display:flex;gap:0.8rem;flex-wrap:wrap;margin-top:2rem">
-        <a class="btn btn--primary" href="/experience">See what I work on</a>
+        <a class="btn btn--primary" href="/experience">See what we do</a>
         <a class="btn btn--ghost" href="/projects">Read the writeups</a>
       </div>
     </div>
@@ -38,13 +43,13 @@ const services = [
     <div class="grid grid--2" style="gap:2.5rem;align-items:start">
       <div>
         <p class="eyebrow">Who is this?</p>
-        <h2>Cyberforks is me — Robert.</h2>
-        <p class="muted">Cyberforks is where I do hands-on, applicable cybersecurity — practical, results-oriented security work, and the home for my projects and writeups.</p>
+        <h2>A practice, not a slide deck.</h2>
+        <p class="muted">Cyberforks delivers hands-on, applicable cybersecurity — practical, results-oriented security work for organizations that need the problem solved, not documented. Every engagement is run by a practitioner who does the work personally.</p>
       </div>
       <div>
         <p class="eyebrow">For the community</p>
         <h2>Playbooks, not paywalls.</h2>
-        <p class="muted">When I work something out, I write it down — step-by-step guides and documentation from real work, shared so others can run the same plays.</p>
+        <p class="muted">When we work something out, we write it down — step-by-step guides and documentation from real engagements, shared so others can run the same plays.</p>
         <a href="https://blog.cyberforks.com" target="_blank" rel="noopener">Read the blog →</a>
       </div>
     </div>
@@ -53,8 +58,8 @@ const services = [
   <!-- Areas -->
   <section class="section wrap" style="padding-top:0">
     <p class="eyebrow">Experience</p>
-    <h2 style="margin-bottom:1.6rem">What I work on</h2>
-    <div class="grid grid--3">
+    <h2 style="margin-bottom:1.6rem">What we do</h2>
+    <div class="grid grid--2">
       {services.map((s) => (
         <a href={s.href} class="card" style="display:block;color:inherit">
           <h3 style="color:var(--accent)">{s.title}</h3>
@@ -69,7 +74,7 @@ const services = [
   <section class="section--tight wrap">
     <div class="card" style="text-align:center;padding:2.5rem 1.5rem;background:var(--bg-raised)">
       <h2 style="margin-bottom:0.6rem">Looking to connect?</h2>
-      <p class="muted" style="max-width:48ch;margin-inline:auto">Whether it's a role, a collaboration, or just good security talk — my inbox is open.</p>
+      <p class="muted" style="max-width:48ch;margin-inline:auto">Whether it's an engagement, a partnership, or just good security talk — the inbox is open.</p>
       <a class="btn btn--primary" href="/contact-me" style="margin-top:1rem">Get in touch</a>
     </div>
   </section>

@@ -19,6 +19,7 @@ export const nav = [
     label: 'Experience',
     href: '/experience',
     children: [
+      { label: 'Virtual CISO', href: '/vciso' },
       { label: 'Agentic AI', href: '/agentic-ai' },
       { label: 'Offensive Security', href: '/offsec' },
       { label: 'Audits', href: '/audits' },

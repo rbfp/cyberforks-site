@@ -1,0 +1,117 @@
+---
+import Base from '../layouts/Base.astro';
+
+const services = [
+  {
+    n: '01',
+    title: 'Security Program Assessment',
+    body: 'A first engagement that establishes what actually needs to happen, before anyone commits to a retainer.',
+    points: [
+      'Environment, asset, and data-flow review',
+      'Determination of which obligations genuinely apply — frameworks, contracts, regulation',
+      'Gap analysis against the applicable standard',
+      'Prioritized remediation roadmap you can act on with or without us',
+    ],
+    note: 'Where it fits: no in-house security leadership yet, and the scope is not obvious.',
+  },
+  {
+    n: '02',
+    title: 'Compliance Readiness',
+    body: 'Getting an organization ready for the scrutiny that comes with selling to enterprises, institutions, and government.',
+    points: [
+      'SOC 2 Type 2 policy readiness and Trust Services Criteria alignment',
+      'NIST CSF and NIST SP 800-53 assessment and mapping',
+      'HECVAT, vendor security questionnaires, and customer due-diligence response',
+      'Evidence collection and audit-handoff packaging',
+    ],
+    note: 'Common triggers: a stalled deal, a customer security review, a first enterprise contract.',
+  },
+  {
+    n: '03',
+    title: 'Security Policy and Governance',
+    body: 'The documented program that auditors, customers, and regulators ask to see.',
+    points: [
+      'Information security policy set, written to be followed rather than filed',
+      'Risk register and formal risk-acceptance process',
+      'Security control exceptions with compensating controls and expiry',
+      'Third-party and vendor risk management',
+    ],
+    note: 'Policy that reflects what the organization actually does — not a template with a logo dropped on it.',
+  },
+  {
+    n: '04',
+    title: 'Incident Response Readiness',
+    body: 'Knowing what happens before it happens, and being able to prove it.',
+    points: [
+      'Incident response plan development',
+      'Runbooks for the scenarios that actually apply',
+      'Breach-notification obligation mapping across jurisdictions',
+      'Tabletop exercises against the plan',
+    ],
+    note: 'Most organizations have a plan. Fewer have one anyone has ever run.',
+  },
+  {
+    n: '05',
+    title: 'AI Governance and Risk',
+    body: 'Security and governance for organizations building with or buying AI systems.',
+    points: [
+      'AI system risk assessment and technical disclosure documentation',
+      'Data-minimization and PII handling review across the AI architecture',
+      'Adversarial testing — prompt injection, model abuse, output manipulation',
+      'Human oversight and transparency controls',
+    ],
+    note: 'Increasingly required in public-sector and institutional procurement.',
+  },
+  {
+    n: '06',
+    title: 'Ongoing Security Leadership',
+    body: 'Retained virtual CISO capacity once the roadmap exists and the work is underway.',
+    points: [
+      'Security roadmap ownership and quarterly reporting',
+      'Executive and board-level risk communication',
+      'Customer and auditor liaison on security questions',
+      'Advisory as the program matures — including handoff to a full-time hire',
+    ],
+    note: 'Structured to make itself unnecessary. Many organizations should eventually hire in-house.',
+  },
+];
+---
+<Base title="Virtual CISO" description="Virtual CISO services from Cyberforks — security program assessment, compliance readiness, policy and governance, incident response, and AI risk.">
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Experience</p>
+      <h1>Virtual CISO</h1>
+      <p class="lede">Security leadership for organizations that need a security program but not yet a full-time executive to run one. Cyberforks provides the leadership, builds the program, and does the work — rather than producing recommendations for someone else to implement.</p>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="grid grid--2">
+      {services.map((s) => (
+        <div class="card">
+          <span class="card__num">{s.n}</span>
+          <h3>{s.title}</h3>
+          <p class="muted">{s.body}</p>
+          <ul>{s.points.map((p) => <li>{p}</li>)}</ul>
+          {s.note && <p class="tag">{s.note}</p>}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section wrap" style="padding-top:0">
+    <div class="card" style="background:var(--bg-raised)">
+      <p class="eyebrow">How engagements start</p>
+      <h2 style="margin-bottom:0.6rem">Assessment first, retainer second.</h2>
+      <p class="muted" style="max-width:64ch">When the scope isn't obvious yet — which is most of the time — the first engagement is a focused assessment: understand the environment, establish which obligations actually apply, and produce a prioritized roadmap. That way the investment decision is made from evidence rather than from a proposal written before anyone knew anything. The roadmap is yours either way.</p>
+    </div>
+  </section>
+
+  <section class="section--tight wrap">
+    <div class="card" style="text-align:center;padding:2.5rem 1.5rem;background:var(--bg-raised)">
+      <h2 style="margin-bottom:0.6rem">Need security leadership?</h2>
+      <p class="muted" style="max-width:48ch;margin-inline:auto">Whether you're responding to a customer requirement or getting ahead of one, we're happy to talk through where you actually stand.</p>
+      <a class="btn btn--primary" href="/contact-me" style="margin-top:1rem">Get in touch</a>
+    </div>
+  </section>
+</Base>
