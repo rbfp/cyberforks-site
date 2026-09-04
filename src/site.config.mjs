@@ -15,6 +15,7 @@ export const site = {
 // Primary nav. `children` renders as a dropdown.
 export const nav = [
   { label: 'Home', href: '/' },
+  { label: 'About', href: '/about' },
   {
     label: 'Experience',
     href: '/experience',

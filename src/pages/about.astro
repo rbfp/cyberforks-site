@@ -1,0 +1,123 @@
+---
+import Base from '../layouts/Base.astro';
+
+const capabilities = [
+  {
+    title: 'Governance, Risk & Compliance',
+    body: 'Risk advisory, control frameworks, policy and standards development, and third-party and vendor risk management.',
+  },
+  {
+    title: 'Security Engineering & Architecture',
+    body: 'Architecture review, hardening, and the build work behind it — designed and implemented, not diagrammed and handed off.',
+  },
+  {
+    title: 'Technical Security Operations',
+    body: 'Vulnerability management at enterprise scale, identity and access management, and cloud security across on-premises and hosted environments.',
+  },
+  {
+    title: 'Detection & Monitoring',
+    body: 'Detection engineering, SIEM operations, log and threat monitoring, including in regulated environments where change discipline is not optional.',
+  },
+  {
+    title: 'Incident Response',
+    body: 'Response planning, runbooks, tabletop exercises, and live response — with network forensics and deep-packet investigation capability behind it.',
+  },
+  {
+    title: 'Independent Assessment',
+    body: 'Security control assessment against the NIST SP 800-53 Revision 5 baseline and federal assessment packages, run on a reporting line separate from operations.',
+  },
+  {
+    title: 'Offensive Security',
+    body: 'Penetration testing, red team, and adversary-TTP emulation against real environments, by practitioners who do this work operationally.',
+  },
+  {
+    title: 'AI Security & Governance',
+    body: 'Risk assessment, adversarial testing, and governance documentation for organizations building with or buying AI systems.',
+  },
+];
+
+const credentials = {
+  offensive: ['OSED', 'GPEN', 'GCPN'],
+  defensive: ['GCFA', 'GCIH', 'GCIA'],
+  foundational: ['GSEC', 'GPYC', 'GFACT', 'GISF', 'Security+'],
+};
+---
+<Base title="About" description="Cyberforks LLC is a California cybersecurity consultancy — virtual CISO, offensive security, independent assessment, agentic AI, and audits, delivered by senior practitioners.">
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">About</p>
+      <h1>Senior practitioners,<br /><span style="color:var(--accent)">staffed to the work.</span></h1>
+      <p class="lede">Cyberforks is a California cybersecurity consultancy. Engagements are staffed from a bench of experienced practitioners — several holding active security clearances — assembled against what the work actually requires. No juniors billed to fill an org chart, and no account manager between you and the people doing it.</p>
+    </div>
+  </section>
+
+  <section class="section wrap">
+    <div class="grid grid--2" style="gap:2.5rem;align-items:start">
+      <div>
+        <p class="eyebrow">How the work runs</p>
+        <h2>Findings you can act on.</h2>
+        <p class="muted">Every engagement produces something usable — a prioritized roadmap, a tested runbook, a policy set written to be followed rather than filed. Reports are written for the person who has to fix the thing, not for a compliance binder.</p>
+        <p class="muted">When scope is not yet obvious, engagements start with a focused assessment rather than a retainer. The resulting roadmap belongs to the client either way.</p>
+      </div>
+      <div>
+        <p class="eyebrow">How engagements are staffed</p>
+        <h2>Built around the problem.</h2>
+        <p class="muted">Teams are assembled against the work rather than sold from a shelf. Each capability area has a practitioner who owns it as their primary discipline and a second who can cover it, so an engagement does not stall because one person is unavailable.</p>
+        <p class="muted">Where a client needs independent assessment, that group reports on a line separate from operations, with its own workpapers and quality control — because an assessment of work your own team performed is not an independent one.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap" style="padding-top:0">
+    <p class="eyebrow">Capabilities</p>
+    <h2 style="margin-bottom:0.6rem">What the team covers</h2>
+    <p class="muted" style="max-width:62ch;margin-bottom:1.6rem">Every area below is held by a practitioner who does it as their primary discipline, with a second able to cover it. Depth on the bench includes enterprise vulnerability management across tens of thousands of assets, SIEM operations under PCI regulation, operational technology environments where downtime is not acceptable, federal threat hunting, and network forensics.</p>
+    <div class="grid grid--2">
+      {capabilities.map((c) => (
+        <div class="card">
+          <h3>{c.title}</h3>
+          <p class="muted">{c.body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section wrap" style="padding-top:0">
+    <div class="grid grid--2" style="gap:2.5rem;align-items:start">
+      <div>
+        <p class="eyebrow">Credentials across the team</p>
+        <h2 style="margin-bottom:1rem">Certified, and cleared where it counts.</h2>
+        <p class="muted" style="margin-bottom:0.4rem"><strong>Offensive</strong> — {credentials.offensive.join(', ')}</p>
+        <p class="muted" style="margin-bottom:0.4rem"><strong>Forensics &amp; response</strong> — {credentials.defensive.join(', ')}</p>
+        <p class="muted" style="margin-bottom:0.4rem"><strong>Foundational</strong> — {credentials.foundational.join(', ')}, CISSP</p>
+        <p class="muted" style="margin-top:0.9rem">Degrees in applied cybersecurity and computer science, and active security clearances among the practitioners who need them.</p>
+      </div>
+      <div>
+        <p class="eyebrow">Working with Cyberforks</p>
+        <h2 style="margin-bottom:1rem">Straightforward to engage.</h2>
+        <p class="muted">A California limited liability company and a State of California certified Small Business, which carries a bid preference on state solicitations and makes subcontracting participation simpler for primes.</p>
+        <p class="muted">Based in Southern California, working remotely and on site. Engagements run as fixed-fee deliverables or retained capacity, depending on what the work calls for.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap" style="padding-top:0">
+    <div class="card" style="background:var(--bg-raised)">
+      <p class="eyebrow">In the open</p>
+      <h2 style="margin-bottom:0.6rem">The work is published.</h2>
+      <p class="muted" style="max-width:64ch">Red team infrastructure playbooks, agentic AI security guardrails, and the write-ups behind them are public — not case studies about work you cannot see, but the actual code and documentation. If you want to know how Cyberforks approaches a problem, read the approach.</p>
+      <div style="display:flex;gap:0.8rem;flex-wrap:wrap;margin-top:1.2rem">
+        <a class="btn btn--ghost" href="/projects">Projects &amp; Writeups</a>
+        <a class="btn btn--ghost" href="https://blog.cyberforks.com" target="_blank" rel="noopener">Read the blog</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight wrap">
+    <div class="card" style="text-align:center;padding:2.5rem 1.5rem;background:var(--bg-raised)">
+      <h2 style="margin-bottom:0.6rem">Want to work together?</h2>
+      <p class="muted" style="max-width:48ch;margin-inline:auto">Engagements, partnerships, or a conversation about where your security program actually stands.</p>
+      <a class="btn btn--primary" href="/contact" style="margin-top:1rem">Get in touch</a>
+    </div>
+  </section>
+</Base>
